@@ -3,745 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cờ Caro Siêu Cấp VIP Pro Max</title>
-    <!-- Thư viện PeerJS kết nối Online P2P -->
-    <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+    <title>Khảo Bài Từ Vựng Unit 2</title>
     <style>
-        :root {
-            --bg-gradient: radial-gradient(circle at center, #1e1b4b 0%, #0f172a 100%);
-            --panel-bg: rgba(30, 41, 59, 0.75);
-            --panel-border: rgba(99, 102, 241, 0.3);
-            --text-color: #f8fafc;
-            --primary: #6366f1;
-            --primary-hover: #4f46e5;
-            --accent: #10b981;
-            --danger: #ef4444;
-            --cell-bg: rgba(15, 23, 42, 0.6);
-            --cell-hover: rgba(99, 102, 241, 0.2);
-            --x-color: #f43f5e;
-            --o-color: #38bdf8;
-            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-        }
-
-        body.theme-neon {
-            --bg-gradient: radial-gradient(circle, #220033 0%, #05000a 100%);
-            --panel-bg: rgba(20, 0, 40, 0.85);
-            --panel-border: #ff007f;
-            --text-color: #00ffcc;
-            --primary: #ff007f;
-            --primary-hover: #cc0066;
-            --accent: #00ffcc;
-            --cell-bg: rgba(10, 0, 20, 0.8);
-            --cell-hover: rgba(255, 0, 127, 0.3);
-            --x-color: #ff0055;
-            --o-color: #00ffff;
-        }
-
-        body.theme-gold {
-            --bg-gradient: linear-gradient(135deg, #1c1404 0%, #0a0701 100%);
-            --panel-bg: rgba(45, 33, 10, 0.85);
-            --panel-border: #ffd700;
-            --text-color: #ffe58f;
-            --primary: #d4af37;
-            --primary-hover: #aa8c2c;
-            --accent: #52c41a;
-            --cell-bg: rgba(30, 22, 6, 0.8);
-            --cell-hover: rgba(212, 175, 55, 0.3);
-            --x-color: #ff4d4f;
-            --o-color: #69c0ff;
-        }
-
-        body.theme-matrix {
-            --bg-gradient: #020c08;
-            --panel-bg: rgba(2, 20, 12, 0.9);
-            --panel-border: #00ff66;
-            --text-color: #00ff66;
-            --primary: #00b347;
-            --primary-hover: #008033;
-            --accent: #ffff00;
-            --cell-bg: rgba(0, 10, 5, 0.9);
-            --cell-hover: rgba(0, 255, 102, 0.2);
-            --x-color: #ff3333;
-            --o-color: #33ccff;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, sans-serif; }
-        body { background: var(--bg-gradient); color: var(--text-color); min-height: 100vh; display: flex; align-items: center; justify-content: center; transition: 0.5s; padding: 10px; overflow-x: hidden; }
-
-        .hidden { display: none !important; }
-
-        .container {
-            width: 100%;
-            max-width: 560px;
-            padding: 30px;
-            background: var(--panel-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 24px;
-            box-shadow: var(--shadow);
-            border: 2px solid var(--panel-border);
-            text-align: center;
-            animation: scaleUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @keyframes scaleUp {
-            from { opacity: 0; transform: scale(0.92); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        h1, h2 { font-size: 26px; font-weight: 900; margin-bottom: 12px; letter-spacing: -0.5px; text-transform: uppercase; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-        p { opacity: 0.85; font-size: 15px; margin-bottom: 15px; }
-
-        input {
-            width: 100%;
-            padding: 14px 18px;
-            margin: 10px 0;
-            border-radius: 14px;
-            border: 2px solid var(--panel-border);
-            background: rgba(0, 0, 0, 0.3);
-            color: var(--text-color);
-            font-size: 16px;
-            outline: none;
-            transition: 0.3s;
-        }
-        input:focus { border-color: var(--accent); box-shadow: 0 0 15px rgba(16, 185, 129, 0.3); }
-
-        button {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 14px 24px;
-            border-radius: 14px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 700;
-            transition: all 0.25s ease;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-            margin: 8px 0;
-            width: 100%;
-            letter-spacing: 0.5px;
-        }
-        button:hover { background: var(--primary-hover); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
-        button:active { transform: translateY(-1px); }
-
-        .stats-box {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 15px;
-            border-radius: 16px;
-            margin: 20px 0;
-            font-size: 14px;
-            font-weight: 700;
-            border: 1px solid var(--panel-border);
-        }
-        .stat-item span { display: block; font-size: 18px; color: var(--accent); margin-top: 4px; }
-
-        .menu-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
-
-        /* Bàn cờ 15x15 Đẳng cấp */
-        #game-screen { max-width: 720px; }
-        .board-wrapper {
-            position: relative;
-            margin: 15px 0;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: inset 0 4px 15px rgba(0,0,0,0.6);
-            border: 2px solid var(--panel-border);
-        }
-        .board-container {
-            overflow: auto;
-            max-height: 60vh;
-            display: flex;
-            justify-content: center;
-            background: rgba(0,0,0,0.4);
-        }
-        .board {
-            display: grid;
-            grid-template-columns: repeat(15, 38px);
-            grid-template-rows: repeat(15, 38px);
-            gap: 2px;
-            background: var(--panel-border);
-            padding: 2px;
-        }
-        .cell {
-            background: var(--cell-bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            font-weight: 900;
-            cursor: pointer;
-            user-select: none;
-            transition: background 0.15s, transform 0.1s;
-        }
-        .cell:hover { background: var(--cell-hover); transform: scale(1.05); z-index: 2; }
-        .cell.x { color: var(--x-color); text-shadow: 0 0 12px var(--x-color); }
-        .cell.o { color: var(--o-color); text-shadow: 0 0 12px var(--o-color); }
-
-        /* Chat box trực tuyến */
-        .chat-container {
-            background: rgba(0,0,0,0.3);
-            border-radius: 12px;
-            padding: 10px;
-            margin-top: 12px;
-            border: 1px solid var(--panel-border);
-            text-align: left;
-        }
-        .chat-messages { height: 70px; overflow-y: auto; font-size: 13px; margin-bottom: 8px; display: flex; flex-direction: column; gap: 4px; }
-        .chat-input-row { display: flex; gap: 6px; }
-        .chat-input-row input { margin: 0; padding: 8px 12px; font-size: 13px; }
-        .chat-input-row button { width: 80px; margin: 0; padding: 8px; font-size: 13px; }
-
-        /* Modal Popup VIP */
-        #modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px);
-            display: flex; align-items: center; justify-content: center; z-index: 1000;
-            animation: fadeIn 0.3s ease;
-        }
-        .modal-content {
-            background: var(--panel-bg); padding: 35px; border-radius: 24px;
-            border: 2px solid var(--panel-border); text-align: center; max-width: 420px; width: 90%;
-            box-shadow: var(--shadow); position: relative; overflow: hidden;
-        }
-
-        /* Cửa hàng Giao diện */
-        .shop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 15px 0; }
-        .shop-item {
-            background: rgba(0,0,0,0.3); border: 2px solid var(--panel-border);
-            padding: 16px; border-radius: 16px; text-align: center; display: flex; flex-direction: column; justify-content: space-between;
-        }
-        .shop-item h3 { font-size: 16px; margin-bottom: 4px; }
-        .shop-item p { font-size: 12px; opacity: 0.8; margin-bottom: 10px; }
-
-        /* Hiệu ứng pháo hoa đơn giản */
-        .firework {
-            position: absolute; width: 6px; height: 6px; border-radius: 50%;
-            animation: explode 0.8s ease-out forwards; pointer-events: none;
-        }
-        @keyframes explode {
-            0% { transform: translate(0, 0) scale(1); opacity: 1; }
-            100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
-        }
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 15px; }
+        .container { background: white; padding: 25px; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); width: 100%; max-width: 550px; text-align: center; }
+        h1 { font-size: 20px; color: #1a73e8; margin-top: 0; margin-bottom: 15px; }
+        .mode-select { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
+        .btn-mode { padding: 8px 12px; font-size: 13px; font-weight: 600; border: 2px solid #1a73e8; background: white; color: #1a73e8; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+        .btn-mode.active, .btn-mode:hover { background: #1a73e8; color: white; }
+        .stats-bar { display: flex; justify-content: space-between; background: #e8f0fe; padding: 8px 15px; border-radius: 8px; font-size: 13px; font-weight: bold; color: #1967d2; margin-bottom: 15px; }
+        .card { background: #fafafa; border: 1px solid #e0e0e0; border-radius: 12px; padding: 20px; margin-bottom: 15px; }
+        .meaning { font-size: 20px; font-weight: bold; color: #202124; margin-bottom: 8px; }
+        .hint { font-size: 13px; color: #5f6368; background: #e8eaed; padding: 6px 10px; border-radius: 6px; display: inline-block; margin-bottom: 10px; }
+        input[type="text"] { width: 100%; padding: 12px; font-size: 16px; border: 2px solid #dadce0; border-radius: 8px; text-align: center; outline: none; transition: 0.2s; }
+        input[type="text"]:focus { border-color: #1a73e8; }
+        .btn-submit { width: 100%; margin-top: 10px; padding: 12px; font-size: 16px; font-weight: bold; background-color: #34a853; color: white; border: none; border-radius: 8px; cursor: pointer; }
+        .btn-submit:hover { background-color: #2d9247; }
+        .feedback { margin-top: 12px; font-weight: bold; font-size: 14px; min-height: 20px; }
+        .correct { color: #137333; }
+        .wrong { color: #c5221f; }
+        .btn-wrong-list { margin-top: 15px; background: #ea4335; color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; display: none; width: 100%; }
     </style>
 </head>
-<body class="theme-neon">
+<body>
 
-    <!-- 1. MÀN HÌNH ĐĂNG NHẬP -->
-    <div id="auth-screen" class="container">
-        <h2>🔥 Cờ Caro VIP Pro Max</h2>
-        <p>Nhập biệt hiệu của bạn để lưu thông tin, chuỗi Streak và bảng xếp hạng</p>
-        <input type="text" id="username-input" placeholder="Biệt hiệu game thủ..." autocomplete="off">
-        <button onclick="handleLogin()">Vào Game Ngay 🚀</button>
+<div class="container">
+    <h1>📝 Khảo Bài Từ Vựng - Unit 2</h1>
+    
+    <div class="mode-select">
+        <button class="btn-mode active" onclick="changeMode(1)">Phần 1 (Trang 11)</button>
+        <button class="btn-mode" onclick="changeMode(2)">Phần 2 (Trang 12)</button>
+        <button class="btn-mode" onclick="changeMode(3)">Phần 3 (Trang 13+14)</button>
+        <button class="btn-mode" onclick="changeMode(0)">Tất cả (110 từ)</button>
     </div>
 
-    <!-- 2. MÀN HÌNH CHÍNH (MENU) -->
-    <div id="menu-screen" class="container hidden">
-        <h1 id="welcome-user" style="color: var(--accent);">Xin chào!</h1>
-        <div class="stats-box">
-            <div class="stat-item">🔥 Streak<span id="stat-streak">0</span></div>
-            <div class="stat-item">🏆 Thắng<span id="stat-wins">0</span></div>
-            <div class="stat-item">🪙 Token<span id="stat-tokens">0</span></div>
-        </div>
-        <div class="menu-grid">
-            <button onclick="openModeSelect()">⚔️ Chế Độ Chơi (3 Chế Độ)</button>
-            <button onclick="openShop()" style="background: #10b981;">🛒 Cửa Hàng Giao Diện VIP</button>
-            <button onclick="handleLogout()" style="background: var(--danger);">Đăng Xuất</button>
-        </div>
+    <div class="stats-bar">
+        <span id="progress-text">Từ: 0 / 0</span>
+        <span id="score-text">Đúng: 0 | Sai: 0</span>
     </div>
 
-    <!-- 3. MÀN HÌNH CHỌN CHẾ ĐỘ -->
-    <div id="mode-screen" class="container hidden">
-        <h2>Lựa Chọn Chế Độ</h2>
-        <div class="menu-grid">
-            <button onclick="showAIdifficulty()">🤖 Chế Độ 1: Đấu Với Máy (3 Cấp Độ)</button>
-            <button onclick="startPracticeMode()">🔄 Chế Độ 2: Máy Tự Luyện Tập</button>
-            <button onclick="showOnlineMenu()">🌐 Chế Độ 3: Đấu Online P2P (Có Chat)</button>
-            <button onclick="backToMenu()" style="background: #64748b;">Quay Lại Menu</button>
-        </div>
+    <div class="card">
+        <div class="meaning" id="meaning-display">Đang tải...</div>
+        <div class="hint" id="hint-display">Gợi ý...</div>
+        <input type="text" id="user-input" placeholder="Gõ từ tiếng Anh..." autocomplete="off" autofocus>
+        <button class="btn-submit" onclick="checkAnswer()">Kiểm tra (Enter)</button>
+        <div class="feedback" id="feedback-display"></div>
     </div>
 
-    <!-- CHỌN ĐỘ KHÓ AI -->
-    <div id="ai-diff-screen" class="container hidden">
-        <h2>Độ Khó Trí Tuệ Nhân Tạo</h2>
-        <div class="menu-grid">
-            <button onclick="startAIGame('easy')">🟢 Dễ (Thư Giãn)</button>
-            <button onclick="startAIGame('medium')">🟡 Trung Bình (Khá Thông Minh)</button>
-            <button onclick="startAIGame('hard')">🔴 Khó (Thách Thức Cực Đại)</button>
-            <button onclick="openModeSelect()" style="background: #64748b;">Quay Lại</button>
-        </div>
-    </div>
+    <button class="btn-wrong-list" id="btn-review-wrong" onclick="startWrongReview()">⚠️ Ôn lại các từ đã gõ sai (<span id="wrong-count">0</span>)</button>
+</div>
 
-    <!-- MENU ĐẤU ONLINE -->
-    <div id="online-menu-screen" class="container hidden">
-        <h2>Đấu Online Trực Tuyến</h2>
-        <div style="background: rgba(0,0,0,0.25); padding: 15px; border-radius: 16px; margin-bottom: 12px; border: 1px solid var(--panel-border);">
-            <h3>Tạo Phòng Mới</h3>
-            <button onclick="createRoom()">Tạo Phòng & Lấy ID</button>
-            <p id="room-id-display" style="margin-top: 10px; font-weight: bold; color: var(--accent); word-break: break-all;"></p>
-        </div>
-        <div style="background: rgba(0,0,0,0.25); padding: 15px; border-radius: 16px; border: 1px solid var(--panel-border);">
-            <h3>Vào Phòng Bạn Bè</h3>
-            <input type="text" id="join-room-input" placeholder="Dán mã ID phòng của bạn..." autocomplete="off">
-            <button onclick="joinRoom()" style="background: #10b981;">Kết Nối Ngay</button>
-        </div>
-        <button onclick="openModeSelect()" style="background: #64748b; margin-top: 15px;">Quay Lại</button>
-    </div>
+<script>
+const fullVocab = [
+    // Trang 11: Getting Started & Language
+    { part: 1, word: "diverse", type: "(adj)", ipa: "/daɪˈvɜːs/", hint: "7 chữ cái, d...", mean: "đa dạng" },
+    { part: 1, word: "diversify", type: "(v)", ipa: "/daɪˈvɜːsɪfaɪ/", hint: "9 chữ cái, d...", mean: "đa dạng hóa" },
+    { part: 1, word: "diversity", type: "(n)", ipa: "/daɪˈvɜːsəti/", hint: "9 chữ cái, d...", mean: "sự đa dạng" },
+    { part: 1, word: "cultural diversity", type: "(n.phr)", ipa: "", hint: "2 từ, c... d...", mean: "sự đa dạng văn hóa" },
+    { part: 1, word: "popularity", type: "(n)", ipa: "/ˌpɒpjʊˈlærəti/", hint: "10 chữ cái, p...", mean: "sự phổ biến" },
+    { part: 1, word: "popular", type: "(adj)", ipa: "/ˈpɒpjʊlə(r)/", hint: "7 chữ cái, p...", mean: "phổ biến" },
+    { part: 1, word: "popularize", type: "(v)", ipa: "/ˈpɒpjʊləraɪz/", hint: "10 chữ cái, p...", mean: "phổ cập" },
+    { part: 1, word: "gain popularity", type: "(phrase)", ipa: "", hint: "2 từ, g... p...", mean: "trở nên phổ biến, được yêu thích" },
+    { part: 1, word: "taste", type: "(n)", ipa: "/teɪst/", hint: "5 chữ cái, t...", mean: "mùi vị; hương vị; gu; sở thích" },
+    { part: 1, word: "tasty", type: "(adj)", ipa: "/ˈteɪsti/", hint: "5 chữ cái, t...", mean: "thơm ngon" },
+    { part: 1, word: "cuisine", type: "(n)", ipa: "/kwɪˈziːn/", hint: "7 chữ cái, c...", mean: "ẩm thực" },
+    { part: 1, word: "booth", type: "(n)", ipa: "/buːð/", hint: "5 chữ cái, b...", mean: "gian hàng" },
+    { part: 1, word: "spice", type: "(n)", ipa: "/spaɪs/", hint: "5 chữ cái, s...", mean: "gia vị" },
+    { part: 1, word: "spicy", type: "(adj)", ipa: "/ˈspaɪsi/", hint: "6 chữ cái, s...", mean: "cay; nhiều gia vị" },
+    { part: 1, word: "autograph", type: "(n)", ipa: "/ˈɔːtəɡrɑːf/", hint: "9 chữ cái, a...", mean: "chữ ký của người nổi tiếng" },
+    { part: 1, word: "souvenir", type: "(n)", ipa: "/ˌsuːvəˈnɪə(r)/", hint: "8 chữ cái, s...", mean: "quà lưu niệm" },
+    { part: 1, word: "tug of war", type: "(n.phr)", ipa: "", hint: "3 từ, t... o... w...", mean: "kéo co" },
+    { part: 1, word: "bamboo dancing", type: "(n.phr)", ipa: "", hint: "2 từ, b... d...", mean: "múa sạp" },
+    { part: 1, word: "grill", type: "(v)", ipa: "/ɡrɪl/", hint: "5 chữ cái, g...", mean: "nướng" },
+    { part: 1, word: "grilled", type: "(adj)", ipa: "/ɡrɪld/", hint: "7 chữ cái, g...", mean: "được nướng" },
+    { part: 1, word: "spring roll", type: "(n)", ipa: "", hint: "2 từ, s... r...", mean: "chả giò" },
+    { part: 1, word: "meatball", type: "(n)", ipa: "", hint: "8 chữ cái, m...", mean: "thịt viên" },
+    { part: 1, word: "variety", type: "(n)", ipa: "/vəˈraɪəti/", hint: "7 chữ cái, v...", mean: "sự đa dạng" },
+    { part: 1, word: "various", type: "(adj)", ipa: "/ˈveəriəs/", hint: "7 chữ cái, v...", mean: "nhiều loại; nhiều dạng khác nhau" },
+    { part: 1, word: "varied", type: "(adj)", ipa: "/ˈveərɪd/", hint: "6 chữ cái, v...", mean: "đa dạng; phong phú" },
+    { part: 1, word: "vary", type: "(v)", ipa: "/ˈveəri/", hint: "4 chữ cái, v...", mean: "thay đổi" },
+    { part: 1, word: "identity", type: "(n)", ipa: "/aɪˈdentəti/", hint: "8 chữ cái, i...", mean: "bản sắc, danh tính" },
+    { part: 1, word: "identify", type: "(v)", ipa: "/aɪˈdentɪfaɪ/", hint: "8 chữ cái, i...", mean: "nhận dạng, nhận diện" },
+    { part: 1, word: "identification", type: "(n)", ipa: "/aɪˌdentɪfɪˈkeɪʃn/", hint: "14 chữ cái, i...", mean: "sự nhận dạng, nhận diện" },
+    { part: 1, word: "separate", type: "(adj)", ipa: "/ˈsepərət/", hint: "7 chữ cái, s...", mean: "riêng biệt" },
+    { part: 1, word: "fair", type: "(n)", ipa: "/feə(r)/", hint: "4 chữ cái, f...", mean: "hội chợ" },
 
-    <!-- 4. MÀN HÌNH TRẬN ĐẤU (15x15) -->
-    <div id="game-screen" class="container hidden">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-            <button onclick="quitGame()" style="background: var(--danger); width: auto; padding: 8px 14px; font-size: 13px;">Thoát</button>
-            <h3 id="game-status" style="font-size: 16px;">Lượt đi: X</h3>
-            <div id="online-role" style="font-size: 13px; color: var(--accent); font-weight: bold;"></div>
-        </div>
-        <div class="board-wrapper">
-            <div class="board-container">
-                <div class="board" id="caro-board"></div>
-            </div>
-        </div>
-        <!-- Khung chat trực tuyến (chỉ hiện khi chơi online) -->
-        <div id="chat-box-container" class="chat-container hidden">
-            <div class="chat-messages" id="chat-messages"></div>
-            <div class="chat-input-row">
-                <input type="text" id="chat-input" placeholder="Nhập tin nhắn..." autocomplete="off">
-                <button onclick="sendChatMessage()">Gửi</button>
-            </div>
-        </div>
-    </div>
+    // Trang 12: Reading
+    { part: 2, word: "origin", type: "(n)", ipa: "/ˈɒrɪdʒɪn/", hint: "6 chữ cái, o...", mean: "nguồn gốc" },
+    { part: 2, word: "originate", type: "(v)", ipa: "/əˈrɪdʒɪneɪt/", hint: "9 chữ cái, o...", mean: "bắt nguồn, khởi đầu" },
+    { part: 2, word: "original", type: "(adj)", ipa: "/əˈrɪdʒənəl/", hint: "8 chữ cái, o...", mean: "ban đầu; nguyên bản; độc đáo" },
+    { part: 2, word: "festivity", type: "(n)", ipa: "/fesˈtɪvəti/", hint: "9 chữ cái, f...", mean: "không khí lễ hội, hoạt động ăn mừng" },
+    { part: 2, word: "festival", type: "(n)", ipa: "/ˈfestɪvl/", hint: "8 chữ cái, f...", mean: "lễ hội" },
+    { part: 2, word: "trend", type: "(n)", ipa: "/trend/", hint: "5 chữ cái, t...", mean: "xu hướng, xu thế" },
+    { part: 2, word: "celebrate", type: "(v)", ipa: "/ˈselɪbreɪt/", hint: "9 chữ cái, c...", mean: "tổ chức, ăn mừng" },
+    { part: 2, word: "celebration", type: "(n)", ipa: "/ˌselɪˈbreɪʃn/", hint: "11 chữ cái, c...", mean: "lễ kỷ niệm" },
+    { part: 2, word: "characteristic", type: "(adj, n)", ipa: "/ˌkærəktəˈrɪstɪk/", hint: "14 chữ cái, c...", mean: "đặc trưng, đặc điểm" },
+    { part: 2, word: "belief", type: "(n)", ipa: "/bɪˈliːf/", hint: "6 chữ cái, b...", mean: "tín ngưỡng" },
+    { part: 2, word: "mystery", type: "(n)", ipa: "/ˈmɪstri/", hint: "7 chữ cái, m...", mean: "bí ẩn" },
+    { part: 2, word: "mysterious", type: "(adj)", ipa: "/mɪˈstɪəriəs/", hint: "9 chữ cái, m...", mean: "huyền bí, bí ẩn" },
+    { part: 2, word: "the full moon", type: "(n.phr)", ipa: "", hint: "3 từ, t... f... m...", mean: "trăng tròn, trăng rằm" },
+    { part: 2, word: "culture shock", type: "(n.phr)", ipa: "", hint: "2 từ, c... s...", mean: "cú sốc văn hóa" },
+    { part: 2, word: "instrument", type: "(n)", ipa: "/ˈɪnstrəmənt/", hint: "10 chữ cái, i...", mean: "nhạc cụ; dụng cụ" },
+    { part: 2, word: "instrumental", type: "(adj)", ipa: "/ˌɪnstrʊˈmentl/", hint: "12 chữ cái, i...", mean: "thuộc về nhạc cụ; có vai trò quan trọng" },
+    { part: 2, word: "globalization", type: "(n)", ipa: "/ˌɡləʊbəlaɪˈzeɪʃn/", hint: "13 chữ cái, g...", mean: "sự toàn cầu hóa" },
+    { part: 2, word: "globalize", type: "(v)", ipa: "/ˈɡləʊbəlaɪz/", hint: "9 chữ cái, g...", mean: "toàn cầu hóa" },
+    { part: 2, word: "global", type: "(adj)", ipa: "/ˈɡləʊbl/", hint: "6 chữ cái, g...", mean: "mang tính toàn cầu" },
+    { part: 2, word: "integration", type: "(n)", ipa: "/ˌɪntɪˈɡreɪʃn/", hint: "11 chữ cái, i...", mean: "sự hội nhập, hòa nhập" },
+    { part: 2, word: "integrate", type: "(v)", ipa: "/ˈɪntɪɡreɪt/", hint: "9 chữ cái, i...", mean: "hội nhập, hòa nhập" },
+    { part: 2, word: "interact", type: "(v)", ipa: "/ˌɪntərˈækt/", hint: "8 chữ cái, i...", mean: "tương tác (với)" },
+    { part: 2, word: "interaction", type: "(n)", ipa: "/ˌɪntərˈækʃn/", hint: "11 chữ cái, i...", mean: "sự tương tác" },
+    { part: 2, word: "interactive", type: "(adj)", ipa: "/ˌɪntərˈæktɪv/", hint: "11 chữ cái, i...", mean: "có tính tương tác" },
+    { part: 2, word: "impact", type: "(v, n)", ipa: "/ˈɪmpækt/", hint: "6 chữ cái, i...", mean: "tác động, ảnh hưởng" },
+    { part: 2, word: "have an impact on", type: "(phrase)", ipa: "", hint: "4 từ, h... a... i... o...", mean: "có tác động đến" },
+    { part: 2, word: "connect", type: "(v)", ipa: "/kəˈnekt/", hint: "7 chữ cái, c...", mean: "kết nối" },
+    { part: 2, word: "connected", type: "(adj)", ipa: "/kəˈnektɪd/", hint: "9 chữ cái, c...", mean: "có kết nối" },
+    { part: 2, word: "connection", type: "(n)", ipa: "/kəˈnekʃn/", hint: "10 chữ cái, c...", mean: "sự kết nối" },
+    { part: 2, word: "custom", type: "(n)", ipa: "/ˈkʌstəm/", hint: "6 chữ cái, c...", mean: "phong tục, tập quán" },
+    { part: 2, word: "in many respects", type: "(phrase)", ipa: "", hint: "3 từ, i... m... r...", mean: "xét trên nhiều phương diện" },
+    { part: 2, word: "experience", type: "(n, v)", ipa: "/ɪkˈspɪəriəns/", hint: "10 chữ cái, e...", mean: "kinh nghiệm; trải nghiệm" },
+    { part: 2, word: "experienced", type: "(adj)", ipa: "/ɪkˈspɪəriənst/", hint: "11 chữ cái, e...", mean: "có kinh nghiệm" },
+    { part: 2, word: "food chain", type: "(n)", ipa: "", hint: "2 từ, f... c...", mean: "chuỗi thức ăn" },
+    { part: 2, word: "a wide range of something", type: "(phrase)", ipa: "", hint: "5 từ, a... w... r... o... s...", mean: "đa dạng nhiều loại thứ gì đó" },
+    { part: 2, word: "ingredient", type: "(n)", ipa: "/ɪnˈɡriːdiənt/", hint: "10 chữ cái, i...", mean: "nguyên liệu; thành phần" },
+    { part: 2, word: "sustainable", type: "(adj)", ipa: "/səˈsteɪnəbl/", hint: "11 chữ cái, s...", mean: "bền vững" },
+    { part: 2, word: "sustainability", type: "(n)", ipa: "/səˌsteɪnəˈbɪləti/", hint: "14 chữ cái, s...", mean: "tính bền vững" },
+    { part: 2, word: "specialty", type: "(n, US)", ipa: "/ˈspeʃəlti/", hint: "9 chữ cái, s...", mean: "đặc sản, chuyên môn" },
+    { part: 2, word: "speciality", type: "(n)", ipa: "/ˌspeʃiˈæləti/", hint: "10 chữ cái, s...", mean: "đặc sản, chuyên môn" },
+    { part: 2, word: "unique", type: "(adj)", ipa: "/juˈniːk/", hint: "6 chữ cái, u...", mean: "độc đáo" },
+    { part: 2, word: "captivate", type: "(v)", ipa: "/ˈkæptɪveɪt/", hint: "9 chữ cái, c...", mean: "lôi cuốn, quyến rũ" },
+    { part: 2, word: "captivated", type: "(adj)", ipa: "/ˈkæptɪveɪtɪd/", hint: "10 chữ cái, c...", mean: "bị lôi cuốn" },
+    { part: 2, word: "captivating", type: "(adj)", ipa: "/ˈkæptɪveɪtɪŋ/", hint: "11 chữ cái, c...", mean: "cuốn hút, hấp dẫn" },
 
-    <!-- MODAL THÔNG BÁO -->
-    <div id="modal" class="hidden">
-        <div class="modal-content" id="modal-content-box">
-            <h2 id="modal-title">Thông Báo</h2>
-            <p id="modal-message" style="margin: 15px 0; font-size: 16px;"></p>
-            <button onclick="closeModal()">Đồng Ý</button>
-        </div>
-    </div>
+    // Trang 13 & 14: Speaking, Listening, Writing, CLIL & Grammar
+    { part: 3, word: "captivation", type: "(n)", ipa: "/ˌkæptɪˈveɪʃn/", hint: "11 chữ cái, c...", mean: "sự cuốn hút, hấp dẫn" },
+    { part: 3, word: "bring somebody/something together", type: "(phrase)", ipa: "", hint: "3 từ, b... s... t...", mean: "đưa mọi người/mọi thứ đến gần nhau" },
+    { part: 3, word: "shared", type: "(adj)", ipa: "/ʃeəd/", hint: "6 chữ cái, s...", mean: "chung, được chia sẻ" },
+    { part: 3, word: "influence", type: "(n, v)", ipa: "/ˈɪnfluəns/", hint: "9 chữ cái, i...", mean: "ảnh hưởng, tác động" },
+    { part: 3, word: "have an influence on", type: "(phrase)", ipa: "", hint: "4 từ, h... a... i... o...", mean: "có ảnh hưởng" },
+    { part: 3, word: "influential", type: "(adj)", ipa: "/ˌɪnfluˈenʃl/", hint: "11 chữ cái, i...", mean: "có ảnh hưởng" },
+    { part: 3, word: "cross-cultural", type: "(adj)", ipa: "/ˌkrɒs ˈkʌltʃərəl/", hint: "2 từ nối, c... c...", mean: "liên văn hóa, đa văn hóa" },
+    { part: 3, word: "multicultural", type: "(adj)", ipa: "/ˌmʌltiˈkʌltʃərəl/", hint: "13 chữ cái, m...", mean: "đa văn hóa" },
+    { part: 3, word: "blend", type: "(v, n)", ipa: "/blend/", hint: "5 chữ cái, b...", mean: "trộn, hòa quyện" },
+    { part: 3, word: "element", type: "(n)", ipa: "/ˈelɪmənt/", hint: "7 chữ cái, e...", mean: "yếu tố, thành phần" },
+    { part: 3, word: "elemental", type: "(adj)", ipa: "/ˌelɪˈmentl/", hint: "9 chữ cái, e...", mean: "cơ bản; thuộc yếu tố tự nhiên" },
+    { part: 3, word: "be on the rise", type: "(idiom)", ipa: "", hint: "4 từ, b... o... t... r...", mean: "đang gia tăng, tiếp tục phát triển" },
+    { part: 3, word: "reflect", type: "(v)", ipa: "/rɪˈflekt/", hint: "7 chữ cái, r...", mean: "phản ánh; phản chiếu" },
+    { part: 3, word: "reflection", type: "(n)", ipa: "/rɪˈflekʃn/", hint: "10 chữ cái, r...", mean: "sự phản chiếu; sự phản ánh" },
+    { part: 3, word: "keep up with", type: "(phr v)", ipa: "", hint: "3 từ, k... u... w...", mean: "theo kịp, bắt kịp" },
+    { part: 3, word: "catch up with", type: "(phr v)", ipa: "", hint: "3 từ, c... u... w...", mean: "theo kịp, bắt kịp" },
+    { part: 3, word: "region", type: "(n)", ipa: "/ˈriːdʒən/", hint: "6 chữ cái, r...", mean: "khu vực" },
+    { part: 3, word: "regional", type: "(adj)", ipa: "/ˈriːdʒənl/", hint: "8 chữ cái, r...", mean: "thuộc khu vực, vùng miền" },
+    { part: 3, word: "appreciate", type: "(v)", ipa: "/əˈpriːʃieɪt/", hint: "10 chữ cái, a...", mean: "đánh giá cao; coi trọng, cảm kích" },
+    { part: 3, word: "appreciation", type: "(n)", ipa: "/əˌpriːʃiˈeɪʃn/", hint: "12 chữ cái, a...", mean: "sự cảm kích; sự đánh giá cao" },
+    { part: 3, word: "affect", type: "(v)", ipa: "/əˈfekt/", hint: "6 chữ cái, a...", mean: "tác động, ảnh hưởng" },
+    { part: 3, word: "promote", type: "(v)", ipa: "/prəˈməʊt/", hint: "7 chữ cái, p...", mean: "thúc đẩy; quảng bá; thăng chức" },
+    { part: 3, word: "promotion", type: "(n)", ipa: "/prəˈməʊʃn/", hint: "9 chữ cái, p...", mean: "trao đổi; sự trao đổi" },
+    { part: 3, word: "exchange", type: "(v, n)", ipa: "/ɪksˈtʃeɪndʒ/", hint: "8 chữ cái, e...", mean: "trao đổi; sự trao đổi" },
+    { part: 3, word: "food stall", type: "(n)", ipa: "", hint: "2 từ, f... s...", mean: "quầy thực phẩm" },
+    { part: 3, word: "involve", type: "(v)", ipa: "/ɪnˈvɒlv/", hint: "7 chữ cái, i...", mean: "bao gồm" },
+    { part: 3, word: "involvement", type: "(n)", ipa: "/ɪnˈvɒlvmənt/", hint: "11 chữ cái, i...", mean: "sự tham gia, dính líu" },
+    { part: 3, word: "haunted", type: "(adj)", ipa: "/ˈhɔːntɪd/", hint: "7 chữ cái, h...", mean: "bị ma ám" },
+    { part: 3, word: "annual", type: "(adj)", ipa: "/ˈænjuəl/", hint: "6 chữ cái, a...", mean: "hàng năm" },
+    { part: 3, word: "costume", type: "(n)", ipa: "/ˈkɒstjuːm/", hint: "7 chữ cái, c...", mean: "trang phục" },
+    { part: 3, word: "childish", type: "(adj)", ipa: "/ˈtʃaɪldɪʃ/", hint: "8 chữ cái, c...", mean: "trẻ con, thiếu chín chắn" },
+    { part: 3, word: "ruin", type: "(v)", ipa: "/ˈruːɪn/", hint: "4 chữ cái, r...", mean: "phá hủy, làm hỏng" },
+    { part: 3, word: "appeal", type: "(v, n)", ipa: "/əˈpiːl/", hint: "6 chữ cái, a...", mean: "hấp dẫn, thu hút, kêu gọi khẩn cấp" },
+    { part: 3, word: "appealing", type: "(adj)", ipa: "/əˈpiːlɪŋ/", hint: "9 chữ cái, a...", mean: "hấp dẫn, thu hút" },
+    { part: 3, word: "extracurricular activity", type: "(n.phr)", ipa: "", hint: "2 từ, e... a...", mean: "hoạt động ngoại khóa" },
+    { part: 3, word: "sense of identity", type: "(phrase)", ipa: "", hint: "3 từ, s... o... i...", mean: "nhận thức về bản thân, ý thức về bản sắc cá nhân" },
+    { part: 3, word: "ignore", type: "(v)", ipa: "/ɪɡˈnɔː(r)/", hint: "6 chữ cái, i...", mean: "phớt lờ, bỏ qua" },
+    { part: 3, word: "language barrier", type: "(n.phr)", ipa: "", hint: "2 từ, l... b...", mean: "rào cản ngôn ngữ" },
+    { part: 3, word: "unfamiliar", type: "(adj)", ipa: "/ˌʌnfəˈmɪliə(r)/", hint: "10 chữ cái, u...", mean: "không quen thuộc, lạ lẫm" },
+    { part: 3, word: "insulting", type: "(adj)", ipa: "/ɪnˈsʌltɪŋ/", hint: "9 chữ cái, i...", mean: "mang tính xúc phạm, lăng mạ" },
+    { part: 3, word: "overcome", type: "(v)", ipa: "/ˌəʊvəˈkʌm/", hint: "8 chữ cái, o...", mean: "vượt qua, khắc phục" },
+    { part: 3, word: "aspect", type: "(n)", ipa: "/ˈæspekt/", hint: "6 chữ cái, a...", mean: "mặt; khía cạnh; phương diện" },
+    { part: 3, word: "open mind", type: "(n.phr)", ipa: "", hint: "2 từ, o... m...", mean: "tâm trí cởi mở" },
+    { part: 3, word: "ban", type: "(v, n)", ipa: "/bæn/", hint: "3 chữ cái, b...", mean: "cấm" },
+    { part: 3, word: "prohibit", type: "(v)", ipa: "/prəˈhɪbɪt/", hint: "8 chữ cái, p...", mean: "cấm" },
+    { part: 3, word: "illegal", type: "(adj)", ipa: "/ɪˈliːɡl/", hint: "7 chữ cái, i...", mean: "bất hợp pháp" },
+    { part: 3, word: "find out", type: "(phr v)", ipa: "/faɪnd aʊt/", hint: "2 từ, f... o...", mean: "tìm ra, phát hiện" },
+    { part: 3, word: "take something seriously", type: "(phrase)", ipa: "", hint: "3 từ, t... s... s...", mean: "coi trọng, xem điều gì là nghiêm túc" }
+];
 
-    <!-- 5. CỬA HÀNG GIAO DIỆN -->
-    <div id="shop-screen" class="container hidden">
-        <h2>🛒 Cửa Hàng Giao Diện VIP</h2>
-        <p style="margin-bottom: 15px;">Token của bạn: <span id="shop-tokens" style="color: var(--accent); font-weight: bold;">0</span> 🪙</p>
-        <div class="shop-grid">
-            <div class="shop-item">
-                <h3>Cyber Neon</h3>
-                <p>Mặc Định</p>
-                <button onclick="setTheme('theme-neon')">Dùng</button>
-            </div>
-            <div class="shop-item">
-                <h3>Hoàng Kim</h3>
-                <p>Giá: 3 Token</p>
-                <button onclick="buyTheme('theme-gold', 3)" id="btn-gold">Mua / Dùng</button>
-            </div>
-            <div class="shop-item">
-                <h3>Matrix Code</h3>
-                <p>Giá: 6 Token</p>
-                <button onclick="buyTheme('theme-matrix', 6)" id="btn-matrix">Mua / Dùng</button>
-            </div>
-        </div>
-        <button onclick="backToMenu()" style="background: #64748b; margin-top: 15px;">Quay Lại Menu</button>
-    </div>
+let currentList = [];
+let wrongList = [];
+let currentIndex = 0;
+let scoreCorrect = 0;
+let scoreWrong = 0;
+let isWrongReviewMode = false;
 
-    <script>
-        // --- ÂM THANH WEB AUDIO API (Tạo tiếng kêu vui nhộn không cần file ngoài) ---
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        function playSound(type) {
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.connect(gain); gain.connect(audioCtx.destination);
-            
-            if (type === 'click') {
-                osc.frequency.setValueAtTime(400, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.1);
-                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
-                osc.start(); osc.stop(audioCtx.currentTime + 0.1);
-            } else if (type === 'win') {
-                osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
-                setTimeout(() => osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1), 100); // E5
-                setTimeout(() => osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.2), 200); // G5
-                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
-                osc.start(); osc.stop(audioCtx.currentTime + 0.4);
-            }
+function changeMode(partNum) {
+    document.querySelectorAll('.btn-mode').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    isWrongReviewMode = false;
+    if (partNum === 0) {
+        currentList = [...fullVocab];
+    } else {
+        currentList = fullVocab.filter(item => item.part === partNum);
+    }
+    resetStats();
+    loadQuestion();
+}
+
+function resetStats() {
+    currentIndex = 0;
+    scoreCorrect = 0;
+    scoreWrong = 0;
+    updateStats();
+}
+
+function updateStats() {
+    document.getElementById('progress-text').innerText = `Từ: ${currentIndex + 1} / ${currentList.length}`;
+    document.getElementById('score-text').innerText = `Đúng: ${scoreCorrect} | Sai: ${scoreWrong}`;
+    document.getElementById('wrong-count').innerText = wrongList.length;
+    document.getElementById('btn-review-wrong').style.display = (wrongList.length > 0 && !isWrongReviewMode) ? 'block' : 'none';
+}
+
+function loadQuestion() {
+    if (currentIndex >= currentList.length) {
+        document.getElementById('meaning-display').innerText = "🎉 Hoàn thành phần khảo bài!";
+        document.getElementById('hint-display').innerText = "Bạn đã duyệt hết danh sách từ vựng.";
+        document.getElementById('user-input').style.display = 'none';
+        document.querySelector('.btn-submit').style.display = 'none';
+        document.getElementById('feedback-display').innerText = '';
+        return;
+    }
+
+    document.getElementById('user-input').style.display = 'block';
+    document.querySelector('.btn-submit').style.display = 'block';
+    
+    const item = currentList[currentIndex];
+    document.getElementById('meaning-display').innerText = item.mean;
+    document.getElementById('hint-display').innerText = `${item.type} ${item.ipa} | Gợi ý: ${item.hint}`;
+    document.getElementById('user-input').value = '';
+    document.getElementById('feedback-display').innerText = '';
+    document.getElementById('user-input').focus();
+    updateStats();
+}
+
+function checkAnswer() {
+    const userAns = document.getElementById('user-input').value.trim().toLowerCase();
+    const currentItem = currentList[currentIndex];
+    const feedback = document.getElementById('feedback-display');
+
+    if (userAns === currentItem.word.toLowerCase()) {
+        feedback.innerText = "✓ Chính xác!";
+        feedback.className = "feedback correct";
+        scoreCorrect++;
+        setTimeout(() => {
+            currentIndex++;
+            loadQuestion();
+        }, 700);
+    } else {
+        feedback.innerText = `✗ Sai rồi! Đáp án đúng: "${currentItem.word}"`;
+        feedback.className = "feedback wrong";
+        scoreWrong++;
+        if (!wrongList.some(w => w.word === currentItem.word)) {
+            wrongList.push(currentItem);
         }
+        updateStats();
+    }
+}
 
-        // --- HỆ THỐNG PHÁO HOA KHI THẮNG ---
-        function triggerFireworks() {
-            const box = document.getElementById('modal-content-box');
-            for (let i = 0; i < 25; i++) {
-                const fw = document.createElement('div');
-                fw.className = 'firework';
-                const angle = Math.random() * Math.PI * 2;
-                const distance = 50 + Math.random() * 80;
-                fw.style.setProperty('--dx', `${Math.cos(angle) * distance}px`);
-                fw.style.setProperty('--dy', `${Math.sin(angle) * distance}px`);
-                fw.style.background = ['#ff0055', '#00ffcc', '#ffd700', '#38bdf8'][Math.floor(Math.random()*4)];
-                fw.style.left = '50%'; fw.style.top = '50%';
-                box.appendChild(fw);
-                setTimeout(() => fw.remove(), 800);
-            }
-        }
+function startWrongReview() {
+    if (wrongList.length === 0) return;
+    isWrongReviewMode = true;
+    currentList = [...wrongList];
+    wrongList = [];
+    document.querySelectorAll('.btn-mode').forEach(btn => btn.classList.remove('active'));
+    resetStats();
+    loadQuestion();
+}
 
-        // --- QUẢN LÝ DỮ LIỆU NGƯỜI DÙNG & LOCALSTORAGE ---
-        let currentUser = null;
-        let userData = { streak: 0, lastLogin: "", wins: 0, tokens: 0, unlockedThemes: ['theme-neon'], currentTheme: 'theme-neon' };
+document.getElementById('user-input').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        checkAnswer();
+    }
+});
 
-        function loadUserData(username) {
-            const saved = localStorage.getItem('caro_vip_user_' + username);
-            if (saved) {
-                userData = JSON.parse(saved);
-            } else {
-                userData = { streak: 1, lastLogin: new Date().toDateString(), wins: 0, tokens: 0, unlockedThemes: ['theme-neon'], currentTheme: 'theme-neon' };
-            }
+// Bắt đầu ứng dụng với Phần 1
+currentList = fullVocab.filter(item => item.part === 1);
+resetStats();
+loadQuestion();
+</script>
 
-            const today = new Date().toDateString();
-            if (userData.lastLogin !== today) {
-                const last = new Date(userData.lastLogin);
-                const now = new Date(today);
-                const diffDays = Math.round(Math.abs(now - last) / (1000 * 60 * 60 * 24));
-                if (diffDays === 1) userData.streak += 1;
-                else if (diffDays > 1) userData.streak = 1;
-                userData.lastLogin = today;
-                saveUserData();
-            }
-        }
-
-        function saveUserData() {
-            if (currentUser) localStorage.setItem('caro_vip_user_' + currentUser, JSON.stringify(userData));
-        }
-
-        function handleLogin() {
-            const val = document.getElementById('username-input').value.trim();
-            if (!val) { showModal("Thiếu thông tin", "Vui lòng nhập tên biệt hiệu của bạn!"); return; }
-            currentUser = val;
-            loadUserData(currentUser);
-            setTheme(userData.currentTheme);
-            updateDashboard();
-
-            document.getElementById('auth-screen').classList.add('hidden');
-            document.getElementById('menu-screen').classList.remove('hidden');
-        }
-
-        function handleLogout() {
-            currentUser = null;
-            document.getElementById('username-input').value = '';
-            document.getElementById('menu-screen').classList.add('hidden');
-            document.getElementById('auth-screen').classList.remove('hidden');
-        }
-
-        function updateDashboard() {
-            document.getElementById('welcome-user').innerText = "Chào, " + currentUser + "!";
-            document.getElementById('stat-streak').innerText = userData.streak;
-            document.getElementById('stat-wins').innerText = userData.wins;
-            document.getElementById('stat-tokens').innerText = userData.tokens;
-            document.getElementById('shop-tokens').innerText = userData.tokens;
-        }
-
-        // --- ĐIỀU HƯỚNG MÀN HÌNH ---
-        function hideAll() { document.querySelectorAll('.container').forEach(el => el.classList.add('hidden')); }
-        function openModeSelect() { hideAll(); document.getElementById('mode-screen').classList.remove('hidden'); }
-        function showAIdifficulty() { hideAll(); document.getElementById('ai-diff-screen').classList.remove('hidden'); }
-        function showOnlineMenu() { hideAll(); document.getElementById('online-menu-screen').classList.remove('hidden'); }
-        function backToMenu() { hideAll(); document.getElementById('menu-screen').classList.remove('hidden'); updateDashboard(); }
-        function showModal(title, msg, isWin = false) {
-            document.getElementById('modal-title').innerText = title;
-            document.getElementById('modal-message').innerText = msg;
-            document.getElementById('modal').classList.remove('hidden');
-            if (isWin) { playSound('win'); triggerFireworks(); }
-        }
-        function closeModal() { document.getElementById('modal').classList.add('hidden'); }
-
-        // --- LOGIC GAME CỜ CARO 15x15 ---
-        const BOARD_SIZE = 15;
-        let board = [], turn = 'X', gameMode = '', aiDiff = 'easy', gameActive = true;
-        let peer = null, conn = null, myRole = '', isMyTurn = true;
-
-        function initBoard() {
-            board = Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(''));
-            const boardEl = document.getElementById('caro-board');
-            boardEl.innerHTML = '';
-            for (let r = 0; r < BOARD_SIZE; r++) {
-                for (let c = 0; c < BOARD_SIZE; c++) {
-                    const cell = document.createElement('div');
-                    cell.className = 'cell';
-                    cell.dataset.row = r; cell.dataset.col = c;
-                    cell.addEventListener('click', () => handleCellClick(r, c));
-                    boardEl.appendChild(cell);
-                }
-            }
-        }
-
-        function renderBoard() {
-            document.querySelectorAll('.cell').forEach(cell => {
-                const r = cell.dataset.row, c = cell.dataset.col, val = board[r][c];
-                cell.innerText = val;
-                cell.className = 'cell ' + (val ? val.toLowerCase() : '');
-            });
-        }
-
-        function handleCellClick(r, c) {
-            if (!gameActive || board[r][c] !== '') return;
-            playSound('click');
-
-            if (gameMode === 'ai') {
-                if (turn !== 'X') return;
-                makeMove(r, c, 'X');
-                if (checkWinOrDraw('X')) return;
-                turn = 'O';
-                document.getElementById('game-status').innerText = "Máy đang phân tích...";
-                setTimeout(aiMove, 350);
-            } 
-            else if (gameMode === 'practice') {
-                return;
-            } 
-            else if (gameMode === 'online') {
-                if (!isMyTurn || turn !== myRole) return;
-                makeMove(r, c, myRole);
-                conn.send({ type: 'move', row: r, col: c, player: myRole });
-                if (checkWinOrDraw(myRole)) return;
-                isMyTurn = false;
-                document.getElementById('game-status').innerText = "Đợi đối thủ...";
-            }
-        }
-
-        function makeMove(r, c, player) {
-            board[r][c] = player;
-            renderBoard();
-        }
-
-        function checkWinOrDraw(player) {
-            if (checkWin(player)) {
-                gameActive = false;
-                if (gameMode === 'ai' && player === 'X') {
-                    userData.wins += 1; userData.tokens += 2;
-                    saveUserData();
-                    showModal("Chiến Thắng! 🎉", "Bạn đã đánh bại AI thông minh! Nhận +2 Token 🪙", true);
-                } else if (gameMode === 'online' && player === myRole) {
-                    userData.wins += 1; userData.tokens += 5;
-                    saveUserData();
-                    showModal("Chiến Thắng! 🏆", "Đỉnh cao! Bạn đã hạ gục đối thủ trực tuyến. Nhận +5 Token 🪙", true);
-                } else if (gameMode === 'practice') {
-                    showModal("Kết Thúc", `Quân ${player} đã chiến thắng chế độ luyện tập!`, true);
-                } else {
-                    showModal("Thua Cuộc 🤖", "AI đã giành chiến thắng. Hãy phục thù vào ván sau nhé!");
-                }
-                document.getElementById('game-status').innerText = `Quân ${player} thắng!`;
-                return true;
-            }
-
-            let isDraw = true;
-            for (let r = 0; r < BOARD_SIZE; r++) {
-                for (let c = 0; c < BOARD_SIZE; c++) { if (board[r][c] === '') isDraw = false; }
-            }
-            if (isDraw) {
-                gameActive = false;
-                showModal("Hòa Nhau! 🤝", "Bàn cờ đã kín ô, bất phân thắng bại.");
-                document.getElementById('game-status').innerText = "Trận đấu hòa!";
-                return true;
-            }
-            return false;
-        }
-
-        function checkWin(p) {
-            const dirs = [[0, 1], [1, 0], [1, 1], [1, -1]];
-            for (let r = 0; r < BOARD_SIZE; r++) {
-                for (let c = 0; c < BOARD_SIZE; c++) {
-                    if (board[r][c] !== p) continue;
-                    for (let [dr, dc] of dirs) {
-                        let count = 1, i = 1;
-                        while (true) {
-                            let nr = r + dr * i, nc = c + dc * i;
-                            if (nr < 0 || nr >= BOARD_SIZE || nc < 0 || nc >= BOARD_SIZE || board[nr][nc] !== p) break;
-                            count++; i++;
-                        }
-                        i = 1;
-                        while (true) {
-                            let nr = r - dr * i, nc = c - dc * i;
-                            if (nr < 0 || nr >= BOARD_SIZE || nc < 0 || nc >= BOARD_SIZE || board[nr][nc] !== p) break;
-                            count++; i++;
-                        }
-                        if (count >= 5) return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-        // --- AI TỐI ƯU ---
-        function startAIGame(diff) {
-            gameMode = 'ai'; aiDiff = diff; gameActive = true; turn = 'X';
-            hideAll(); document.getElementById('game-screen').classList.remove('hidden');
-            document.getElementById('chat-box-container').classList.add('hidden');
-            document.getElementById('online-role').innerText = "Đấu AI (" + diff + ")";
-            document.getElementById('game-status').innerText = "Lượt đi: Bạn (X)";
-            initBoard();
-        }
-
-        function aiMove() {
-            if (!gameActive) return;
-            let move = aiDiff === 'easy' ? getRandomMove() : (getMediumMove() || getRandomMove());
-            if (move) {
-                makeMove(move.r, move.c, 'O');
-                playSound('click');
-                if (!checkWinOrDraw('O')) {
-                    turn = 'X';
-                    document.getElementById('game-status').innerText = "Lượt đi: Bạn (X)";
-                }
-            }
-        }
-
-        function getRandomMove() {
-            let empty = [];
-            for (let r = 0; r < BOARD_SIZE; r++) {
-                for (let c = 0; c < BOARD_SIZE; c++) { if (board[r][c] === '') empty.push({r, c}); }
-            }
-            return empty.length ? empty[Math.floor(Math.random() * empty.length)] : null;
-        }
-
-        function getMediumMove() {
-            for (let r = 0; r < BOARD_SIZE; r++) {
-                for (let c = 0; c < BOARD_SIZE; c++) {
-                    if (board[r][c] === '') {
-                        board[r][c] = 'O'; if (checkWin('O')) { board[r][c] = ''; return {r, c}; }
-                        board[r][c] = 'X'; if (checkWin('X')) { board[r][c] = ''; return {r, c}; }
-                        board[r][c] = '';
-                    }
-                }
-            }
-            return null;
-        }
-
-        // --- MÁY LUYỆN TẬP ---
-        let practiceInterval = null;
-        function startPracticeMode() {
-            gameMode = 'practice'; gameActive = true; turn = 'X';
-            hideAll(); document.getElementById('game-screen').classList.remove('hidden');
-            document.getElementById('chat-box-container').classList.add('hidden');
-            document.getElementById('online-role').innerText = "Chế độ: AI vs AI";
-            initBoard();
-            if (practiceInterval) clearInterval(practiceInterval);
-            practiceInterval = setInterval(() => {
-                if (!gameActive) { clearInterval(practiceInterval); return; }
-                let move = getRandomMove();
-                if (move) {
-                    makeMove(move.r, move.c, turn);
-                    playSound('click');
-                    if (checkWinOrDraw(turn)) { clearInterval(practiceInterval); return; }
-                    turn = turn === 'X' ? 'O' : 'X';
-                    document.getElementById('game-status').innerText = `Lượt máy: ${turn}`;
-                }
-            }, 350);
-        }
-
-        function quitGame() {
-            if (practiceInterval) clearInterval(practiceInterval);
-            if (peer) { peer.destroy(); peer = null; }
-            backToMenu();
-        }
-
-        // --- ĐẤU ONLINE + CHAT TRỰC TUYẾN ---
-        function createRoom() {
-            peer = new Peer();
-            peer.on('open', (id) => {
-                document.getElementById('room-id-display').innerText = "Mã ID: " + id;
-            });
-            peer.on('connection', (connection) => {
-                conn = connection; myRole = 'X';
-                setupOnlineGameSession();
-                document.getElementById('online-role').innerText = "Bạn là X (Đi trước)";
-                showModal("Đã kết nối!", "Đối thủ đã vào phòng! Trận chiến bắt đầu.");
-            });
-        }
-
-        function joinRoom() {
-            const roomId = document.getElementById('join-room-input').value.trim();
-            if (!roomId) { showModal("Lỗi", "Vui lòng nhập ID phòng cần vào!"); return; }
-            peer = new Peer();
-            peer.on('open', () => {
-                conn = peer.connect(roomId); myRole = 'O';
-                conn.on('open', () => {
-                    setupOnlineGameSession();
-                    document.getElementById('online-role').innerText = "Bạn là O (Đi sau)";
-                    showModal("Đã kết nối!", "Kết nối phòng thành công!");
-                });
-            });
-        }
-
-        function setupOnlineGameSession() {
-            gameMode = 'online'; gameActive = true; turn = 'X'; isMyTurn = (myRole === 'X');
-            hideAll(); document.getElementById('game-screen').classList.remove('hidden');
-            document.getElementById('chat-box-container').classList.remove('hidden');
-            document.getElementById('chat-messages').innerHTML = '';
-            initBoard();
-            document.getElementById('game-status').innerText = isMyTurn ? "Lượt đi của bạn" : "Đợi đối thủ...";
-
-            conn.on('data', (data) => {
-                if (data.type === 'move') {
-                    makeMove(data.row, data.col, data.player);
-                    playSound('click');
-                    if (!checkWinOrDraw(data.player)) {
-                        isMyTurn = true;
-                        document.getElementById('game-status').innerText = "Lượt đi của bạn";
-                    }
-                } else if (data.type === 'chat') {
-                    appendChat("Đối thủ", data.msg);
-                }
-            });
-        }
-
-        function sendChatMessage() {
-            const input = document.getElementById('chat-input');
-            const msg = input.value.trim();
-            if (!msg || !conn) return;
-            appendChat("Bạn", msg);
-            conn.send({ type: 'chat', msg: msg });
-            input.value = '';
-        }
-
-        function appendChat(sender, msg) {
-            const box = document.getElementById('chat-messages');
-            box.innerHTML += `<div><b>${sender}:</b> ${msg}</div>`;
-            box.scrollTop = box.scrollHeight;
-        }
-
-        // --- CỬA HÀNG VIP ---
-        function openShop() { hideAll(); document.getElementById('shop-screen').classList.remove('hidden'); updateShopUI(); }
-        function setTheme(themeName) {
-            document.body.className = themeName;
-            userData.currentTheme = themeName;
-            saveUserData();
-        }
-        function buyTheme(themeName, price) {
-            if (userData.unlockedThemes.includes(themeName)) { setTheme(themeName); showModal("Thành công", "Đã chuyển đổi giao diện!"); return; }
-            if (userData.tokens >= price) {
-                userData.tokens -= price;
-                userData.unlockedThemes.push(themeName);
-                setTheme(themeName);
-                saveUserData();
-                updateShopUI();
-                updateDashboard();
-                showModal("Giao Diện Mới! 🛒", "Mua thành công! Tận hưởng không gian VIP nào!", true);
-            } else {
-                showModal("Thiếu Token", "Hãy chiến thắng thêm các trận để nhận Token mua giao diện này!");
-            }
-        }
-        function updateShopUI() {
-            document.getElementById('shop-tokens').innerText = userData.tokens;
-            const themes = ['theme-gold', 'theme-matrix'];
-            themes.forEach(th => {
-                const btn = document.getElementById('btn-' + th.replace('theme-', ''));
-                if (userData.unlockedThemes.includes(th)) {
-                    btn.innerText = userData.currentTheme === th ? "Đang Dùng" : "Dùng";
-                } else {
-                    btn.innerText = "Mua";
-                }
-            });
-        }
-    </script>
 </body>
 </html>
